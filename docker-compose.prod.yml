@@ -3,6 +3,7 @@ services:
     build:
       context: client
       target: prod
+    image: hasan18205/chat-app-client:v1
     env_file: ./client/.env.prod
     ports:
       - 5000:5000
@@ -15,6 +16,7 @@ services:
     build:
       context: server
       target: prod
+    image: hasan18205/chat-app-server:v1
     command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - media-volume:/app/media
