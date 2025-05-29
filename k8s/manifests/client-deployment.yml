@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: client
+  labels:
+    app: client
 spec:
   replicas: 1
   selector:
@@ -17,16 +19,3 @@ spec:
           image: hasan18205/chat-app-client:v1
           ports:
             - containerPort: 5000
-          envFrom:
-            - secretRef:
-                name: client-env
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: client-env
-type: Opaque
-stringData:
-  # Add key-value pairs from ./client/.env.prod here
-  KEY1: "value1"
-  KEY2: "value2"
